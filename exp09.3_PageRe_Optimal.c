@@ -1,3 +1,4 @@
+//exp09.3_PageRe_Optimal
 #include <stdio.h>
 int main() {
     int i, j, n, a[50], frame[10], no, k, avail, count = 0, fault = 0, hit = 0, max, pos;  
