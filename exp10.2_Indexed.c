@@ -1,3 +1,4 @@
+//exp10.2_Indexed.c
 #include<stdio.h>
 void main()
 {
