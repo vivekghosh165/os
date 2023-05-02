@@ -1,73 +1,83 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include<stdio.h>
+#include<stdlib.h>
 int main()
-
 {
-    int queue[20], n, head, i, j, k, seek = 0, max, diff, temp, queue1[20], 
-    queue2[20], temp1 = 0, temp2 = 0;
-    float avg;
-    printf("Enter the max range of disk\n");
-    scanf("%d", &max);
-    printf("Enter the initial head position\n");
-    scanf("%d", &head);
-    printf("Enter the size of queue request\n");
-    scanf("%d", &n);
-    printf("Enter the queue of disk positions to be read\n");
-    for (i = 1; i <= n; i++)
+    int RQ[100],i,j,n,TotalHeadMoment=0,initial,size,move;
+    printf("Enter the number of Requests\n");
+    scanf("%d",&n);
+    printf("Enter the Requests sequence\n");
+    for(i=0;i<n;i++)
+     scanf("%d",&RQ[i]);
+    printf("Enter initial head position\n");
+    scanf("%d",&initial);
+    printf("Enter total disk size\n");
+    scanf("%d",&size);
+    printf("Enter the head movement direction for high 1 and for low 0\n");
+    scanf("%d",&move);
+    for(i=0;i<n;i++)
     {
-        scanf("%d", &temp);
-        if (temp >= head)
+        for(j=0;j<n-i-1;j++)
         {
-            queue1[temp1] = temp;
-            temp1++;
-        }
-        else
-        {
-            queue2[temp2] = temp;
-            temp2++;
-        }
-    }
-    for (i = 0; i < temp1 - 1; i++)
-    {
-        for (j = i + 1; j < temp1; j++)
-        {
-            if (queue1[i] > queue1[j])
+            if(RQ[j]>RQ[j+1])
             {
-                temp = queue1[i];
-                queue1[i] = queue1[j];
-                queue1[j] = temp;
+                int temp;
+                temp=RQ[j];
+                RQ[j]=RQ[j+1];
+                RQ[j+1]=temp;
             }
         }
     }
-    for (i = 0; i < temp2 - 1; i++)
+    int index;
+    for(i=0;i<n;i++)
     {
-        for (j = i + 1; j < temp2; j++)
+        if(initial<RQ[i])
         {
-            if (queue2[i] < queue2[j])
-            {
-                temp = queue2[i];
-                queue2[i] = queue2[j];
-                queue2[j] = temp;
-            }
+            index=i;
+            break;
         }
     }
-    for (i = 1, j = 0; j < temp1; i++, j++)
-        queue[i] = queue1[j];
-    queue[i] = max;
-    for (i = temp1 + 2, j = 0; j < temp2; i++, j++)
-        queue[i] = queue2[j];
-    queue[i] = 0;
-    queue[0] = head;
-    for (j = 0; j <= n + 1; j++)
+    if(move==1)
     {
-        diff = abs(queue[j + 1] - queue[j]);
-        seek += diff;
-        printf("Disk head moves from %d to %d with seek %d\n", queue[j], 
-        queue[j + 1], diff);
+        for(i=index;i<n;i++)
+        {
+            TotalHeadMoment=TotalHeadMoment+abs(RQ[i]-initial);
+            initial=RQ[i];
+        }
+        TotalHeadMoment=TotalHeadMoment+abs(size-RQ[i-1]-1);
+        initial = size-1;
+        for(i=index-1;i>=0;i--)
+        {
+             TotalHeadMoment=TotalHeadMoment+abs(RQ[i]-initial);
+             initial=RQ[i];
+            
+        }
     }
-    printf("Total seek time is %d\n", seek);
-    avg = seek / (float)n;
-    printf("Average seek time is %f\n", avg);
+    else
+    {
+        for(i=index-1;i>=0;i--)
+        {
+            TotalHeadMoment=TotalHeadMoment+abs(RQ[i]-initial);
+            initial=RQ[i];
+        }
+        TotalHeadMoment=TotalHeadMoment+abs(RQ[i+1]-0);
+        initial =0;
+        for(i=index;i<n;i++)
+        {
+             TotalHeadMoment=TotalHeadMoment+abs(RQ[i]-initial);
+             initial=RQ[i];   
+        }
+    }
+    printf("Total head movement is %d",TotalHeadMoment);
     return 0;
 }
+/*Enter the number of Request
+8
+Enter the Requests Sequence
+95 180 34 119 11 123 62 64
+Enter initial head position
+50
+Enter total disk size
+200
+Enter the head movement direction for high 1 and for low 0
+1
+Total head movement is 337*/
