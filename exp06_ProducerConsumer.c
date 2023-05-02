@@ -1,3 +1,4 @@
+//exp06_ProducerConsumer
 #include <stdio.h>
 #include <stdlib.h>
 int s= 1;
@@ -8,29 +9,24 @@ void producer()
     ++full;
     --empty;
     data++;
-
     printf("\nProducer produces item number: %d\n", data);
     ++s;
 }
-
 void consumer()
 {
     --s;
     --full;
     ++empty;
-
     printf("\nConsumer consumes item number: %d.\n", data);
     data--;
     ++s;
 }
-
 int main()
 {
     int n, i;
     printf("\n1. Enter 1 for Producer"
            "\n2. Enter 2 for Consumer"
            "\n3. Enter 3 to Exit");
-
     for (i = 1; i > 0; i++)
     {
         printf("\nEnter your choice: ");
@@ -42,13 +38,11 @@ int main()
             {
                 producer();
             }
-
             else
             {
                 printf("The Buffer is full. New data cannot be produced!");
             }
             break;
-
         case 2:
             if ((s == 1) && (full != 0))
             {
