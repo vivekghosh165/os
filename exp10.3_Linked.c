@@ -34,3 +34,25 @@ void main()
  printf("\n");
  }
 } 
+/*
+Enter no. of files:2
+Enter file name:vivek
+Enter starting block:20
+Enter no.of blocks:6
+Enter block numbers: 4
+12
+15
+45
+32
+25
+Enter file name:ghosh
+Enter starting block:12
+Enter no.of blocks:5
+Enter block numbers:6
+5
+4
+3
+2
+File start size block
+vivek 20 6 4--->12--->15--->45--->32--->25
+ghosh 12 5 6--->5--->4--->3--->2*/
