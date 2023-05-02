@@ -1,44 +1,27 @@
-//SEQUENTIAL
-#include <stdio.h> 
-#include <stdlib.h>
-void recurse(int files[]){
-int flag = 0, startBlock, len, j, k, ch;
-printf("Enter the starting block and the length of the files: ");
- scanf("%d%d", &startBlock, &len);
-for (j=startBlock; j<(startBlock+len); j++)
-{ if (files[j] == 0)
-flag++;
-}
-if(len == flag)
+#include<stdio.h>
+void main()
 {
-for (int k=startBlock; k<(startBlock+len); k++){ if (files[k] == 0)
-{
-files[k] = 1; printf("%d\t%d\n", k, files[k]);
-}
-}
-if (k != (startBlock+len-1))
-printf("The file is allocated to the disk\n");
-}
-else
-printf("The file is not allocated to the disk\n");
-
-printf("Do you want to enter more files?\n"); printf("Press 1 for YES, 0 for NO: ");
- scanf("%d", &ch);
-if (ch == 1)
-
-recurse(files);
- else
-exit(0);
- return;
-}
-
-int main()
-{
-int files[50];
-for(int i=0;i<50;i++) 
-files[i]=0;
-printf("Files Allocated are :\n");
-
-recurse(files);
-return 0;
-}
+ int n,i,j,b[20],sb[20],t[20],x,c[20][20];
+ printf("Enter no.of files:");
+ scanf("%d",&n);
+ for(i=0;i<n;i++)
+ {
+ printf("Enter no. of blocks occupied by file%d",i+1);
+ scanf("%d",&b[i]);
+ printf("Enter the starting block of file%d",i+1);
+ scanf("%d",&sb[i]);
+ t[i]=sb[i];
+ for(j=0;j<b[i];j++)
+ c[i][j]=sb[i]++;
+ }
+ printf("Filename\tStart block\tlength\n");
+ for(i=0;i<n;i++)
+ printf("%d\t %d \t%d\n",i+1,t[i],b[i]);
+ printf("Enter file name:");
+ scanf("%d",&x);
+ printf("File name is:%d",x);
+ printf("length is:%d",b[x-1]);
+ printf("blocks occupied:");
+ for(i=0;i<b[x-1];i++)
+ printf("%4d",c[x-1][i]);
+} 
