@@ -38,6 +38,6 @@ enter blocks of file2: 2 3 4 5 6
 File index length
  1 2 10
 2 3 5
-Enter file name: vivek
+Enter file name: 2
 file name is:12803
 Index is:0Block occupied are: */
