@@ -34,5 +34,5 @@ Enter the starting block of file2 5
 Filename Start block length
  1 2 4
 2 5 10
-Enter file name: vivek
+Enter file name: 1
 File name is:12803 length is:0blocks occupied */
