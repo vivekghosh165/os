@@ -1,23 +1,20 @@
+//exp05.1_RR.c
 #include<stdio.h> 
 int main() 
 { 
     int i, NOP, sum=0,count=0, y, quant, wt=0, tat=0, at[10], bt[10], temp[10]; 
     float avg_wt, avg_tat; 
-
     printf("Total number of processes in the system: "); 
     scanf("%d", &NOP); 
     y = NOP; 
-
     for(i=0; i<NOP; i++) 
     { 
         printf("\nEnter the arrival and burst time of process[%d]: ", i+1); 
         scanf("%d%d", &at[i], &bt[i]); 
         temp[i] = bt[i]; 
     } 
-
     printf("\nEnter the time quantum for the process: "); 
     scanf("%d", &quant); 
-
     printf("\nProcess\t  Burst Time\t  Waiting Time\t  Turnaround Time"); 
     for(sum=0, i = 0; y!=0; ) 
     { 
@@ -55,7 +52,6 @@ int main()
     } 
     avg_wt = (float)wt / NOP; 
     avg_tat = (float)tat / NOP; 
-
     printf("\n\nAverage waiting time: %.2f", avg_wt); 
     printf("\nAverage turnaround time: %.2f\n", avg_tat); 
     return 0; 
