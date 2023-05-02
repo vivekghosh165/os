@@ -1,40 +1,36 @@
 #include<stdio.h>
-#include<stdlib.h> 
+struct file
+{
+ char fname[10];
+ int start,size,block[10];
+}f[10];
 void main()
 {
-int f[50], p,i, st, len, j, c, k, a;
- for(i=0;i<50;i++)
-f[i]=0;
-printf("Enter how many blocks already allocated: "); 
-scanf("%d",&p);
-printf("Enter blocks already allocated: "); 
-for(i=0;i<p;i++)
-{
-scanf("%d",&a); f[a]=1;
-}
-x: printf("Enter index starting block and length: ");
- scanf("%d%d", &st,&len);
-k=len; if(f[st]==0)
-{
-for(j=st;j<(st+k);j++)
-{
-if(f[j]==0)
-{ f[j]=1;
-printf("%d——————>%d\n",j,f[j]);
-}
-else
-{
-printf("%d Block is already allocated \n",j);
- k++;
-}
-}
-}
-else
-printf("%d starting block is already allocated \n",st);
-
-printf("Do you want to enter more file(Yes - 1/No - 0)"); 
-scanf("%d", &c);
-if(c==1) goto x; 
-else 
-exit(0);
-}
+ int i,j,n;
+ printf("Enter no. of files:");
+ scanf("%d",&n);
+ for(i=0;i<n;i++)
+ {
+ printf("Enter file name:");
+ scanf("%s",f[i].fname);
+ printf("Enter starting block:");
+ scanf("%d",&f[i].start);
+ f[i].block[0]=f[i].start;
+ printf("Enter no.of blocks:");
+ scanf("%d",&f[i].size);
+ printf("Enter block numbers:");
+ for(j=1;j<=f[i].size;j++)
+ {
+ scanf("%d",&f[i].block[j]);
+ }
+ }
+ printf("File\tstart\tsize\tblock\n");
+ for(i=0;i<n;i++)
+ {
+ printf("%s\t%d\t%d\t",f[i].fname,f[i].start,f[i].size);
+ for(j=1;j<=f[i].size-1;j++)
+ printf("%d--->",f[i].block[j]);
+ printf("%d",f[i].block[j]);
+ printf("\n");
+ }
+} 
