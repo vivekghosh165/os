@@ -25,3 +25,13 @@ void main()
  for(i=0;i<b[x-1];i++)
  printf("%4d",c[x-1][i]);
 } 
+/*Enter no.of files: 2
+Enter no. of blocks occupied by file1 4
+Enter the starting block of file1 2
+ Enter no. of blocks occupied by file2 10
+Enter the starting block of file2 5
+Filename Start block length
+ 1 2 4
+2 5 10
+Enter file name: vivek
+File name is:12803 length is:0blocks occupied */
